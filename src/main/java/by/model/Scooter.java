@@ -10,11 +10,11 @@ import javax.persistence.Table;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "Escooter")
-public class Escooter extends BaseEntity {
-    @Column(name = "NumderES")
-    private String NumderES;
+@Table(name = "Scooter")
+public class Scooter extends BaseEntity {
+    @Column(name = "model")
+    private String model;
 
-    @Column(name = "Status")
-    private String Status;
+    @Column(name = "price")
+    private int price;
 }
