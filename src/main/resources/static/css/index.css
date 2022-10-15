@@ -1,0 +1,44 @@
+header {
+    padding: 15px;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* header links */
+header > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+footer {
+    padding: 15px;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: end;
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+button.link {
+    border: 0;
+    background: none;
+    color: #0d6efd;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+button.link:hover {
+    color: #0a58ca;
+}

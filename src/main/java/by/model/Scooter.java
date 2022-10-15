@@ -16,5 +16,5 @@ public class Scooter extends BaseEntity {
     private String model;
 
     @Column(name = "price")
-    private int price;
+    private float price;
 }

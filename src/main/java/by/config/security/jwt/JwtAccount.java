@@ -1,4 +1,4 @@
-package by.security.jwt;
+package by.config.security.jwt;
 
 import by.model.Account;
 import org.springframework.security.core.GrantedAuthority;

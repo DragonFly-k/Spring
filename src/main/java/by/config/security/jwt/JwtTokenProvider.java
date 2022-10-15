@@ -1,4 +1,4 @@
-package by.security.jwt;
+package by.config.security.jwt;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;

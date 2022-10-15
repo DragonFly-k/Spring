@@ -1,6 +1,6 @@
-package by.security.jwt;
+package by.config.security.jwt;
 
-import by.security.JwtUserDetailsService;
+import by.config.security.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

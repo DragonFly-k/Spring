@@ -1,6 +1,6 @@
-package by.security;
+package by.config.security;
 
-import by.security.jwt.JwtAccount;
+import by.config.security.jwt.JwtAccount;
 import by.model.Account;
 import by.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
