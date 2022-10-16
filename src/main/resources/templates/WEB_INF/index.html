@@ -11,7 +11,9 @@
 </head>
 <body>
    <div th:insert="fragments/components :: header"></div>
-   <h1>Home</h1>
+  <div id="scooters-content" class="container">
+  </div>
    <div th:insert="fragments/components :: footer"></div>
+   <script th:src="@{/js/loadScooters.js}"></script>
 </body>
 </html>
