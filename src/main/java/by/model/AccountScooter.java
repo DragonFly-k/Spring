@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "AccountScooter")
+@Table(name = "account_scooter")
 public class AccountScooter extends BaseEntity{
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -22,7 +22,7 @@ public class AccountScooter extends BaseEntity{
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @Column(name = "rentTime")
+    @Column(name = "rent_time")
     private Date rentTime;
 
     public AccountScooter(Scooter scooter, Account account) {

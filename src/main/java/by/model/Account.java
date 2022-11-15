@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "Account")
+@Table(name = "account")
 public class Account extends BaseEntity {
     @Column(name = "login")
     private String login;

@@ -1,6 +1,6 @@
-package by.config.security;
+package by.security;
 
-import by.config.security.jwt.JwtAccount;
+import by.security.jwt.JwtAccount;
 import by.model.Account;
 import by.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,17 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    public JwtUserDetailsService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
     @Override
     public JwtAccount loadUserByUsername(String login) throws UsernameNotFoundException {
         Account account = accountService.findByLogin(login);
+        if (account == null) {
+            throw new UsernameNotFoundException("User with login: " + login + " not found");
+        }
         return JwtAccount.fromAccountToJwtAccount(account);
     }
 }

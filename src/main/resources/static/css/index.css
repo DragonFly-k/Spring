@@ -1,12 +1,15 @@
 header {
-    padding: 15px;
-    background: black;
+    padding: 6px;
+    background: rgba(0,0,0,0.8);
     color: white;
     display: flex;
     justify-content: space-between;
 }
 
-/* header links */
+p,h1,h2,h3,h4,h5,h6,div.form-group label {
+    color: white;
+}
+
 header > div {
     display: flex;
     align-items: center;
@@ -15,11 +18,15 @@ header > div {
 }
 
 footer {
-    padding: 15px;
-    background: black;
+    padding: 6px;
+    background: rgba(0,0,0,0.8);
     color: white;
     display: flex;
     justify-content: end;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .container {
@@ -28,7 +35,7 @@ footer {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 button.link {
@@ -41,4 +48,45 @@ button.link {
 
 button.link:hover {
     color: #0a58ca;
+}
+
+.bgImage {
+    z-index: -1;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    filter: brightness(0.8);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#scooters-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 100px;
+}
+
+.scooter-card {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 30px;
+}
+
+.scooter-card > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    align-items: center;
+    justify-content: center;
 }

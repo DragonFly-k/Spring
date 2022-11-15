@@ -36,7 +36,7 @@ public class AccountService {
     public Account findById(Long id) { return accountRepository.findAccountById(id); }
 
     public Account signup(Account account) {
-        Role role = roleRepository.findRoleByName("ROLE_BUYER");
+        Role role = roleRepository.findRoleByName("BUYER");
         account.setRole(role);
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountRepository.save(account);

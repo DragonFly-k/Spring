@@ -1,4 +1,5 @@
 package by.controller;
+import by.aop.LogAnnotation;
 
 import by.dto.RentScooterDTO;
 import by.exceptions.ScooterException;
@@ -8,6 +9,7 @@ import by.model.Scooter;
 import by.services.AccountScooterService;
 import by.services.AccountService;
 import by.services.ScooterService;
+import by.services.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+import javax.mail.MessagingException;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +34,10 @@ public class ScooterController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    MailService mailService;
+
+    @LogAnnotation
     @GetMapping(value = "list")
     public ResponseEntity<List<Scooter>> getScooters() {
         List<Scooter> scooters = scooterService.getAll();
@@ -68,8 +74,11 @@ public class ScooterController {
     }
 
     @DeleteMapping(value = "rent")
-    public ResponseEntity deleteRentScooter(RequestEntity<RentScooterDTO> rentScooterDTO) {
+    public ResponseEntity deleteRentScooter(RequestEntity<RentScooterDTO> rentScooterDTO) throws MessagingException {
         Scooter scooter = scooterService.getById(rentScooterDTO.getBody().getScooterId());
+        Account account = accountService.findById(rentScooterDTO.getBody().getAccountId());
+        AccountScooter accountScooter = accountScooterService.getByAccount(account);
+        mailService.sendMailAboutRent(accountScooter);
         accountScooterService.deleteByScooter(scooter);
         log.info("Delete query : /api/v1/scooter/rent");
         return new ResponseEntity(HttpStatus.OK);

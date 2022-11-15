@@ -1,8 +1,9 @@
-package by.config.security.jwt;
+package by.security.jwt;
 
-import by.config.security.JwtUserDetailsService;
+import by.security.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -26,25 +27,19 @@ public class JwtTokenFilter extends GenericFilterBean {
     @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
 
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
-        String token = getTokenFromRequest((HttpServletRequest) req);
-        if(token != null && jwtTokenProvider.validateToken(token)) {
-            String accountLogin = jwtTokenProvider.getLogin(token);
-            JwtAccount jwtAccount = jwtUserDetailsService.loadUserByUsername(accountLogin);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(jwtAccount, null, jwtAccount.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
-        }
-        filterChain.doFilter(req, res);
+    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    private String getTokenFromRequest(HttpServletRequest request) {
-        String bearer = request.getHeader(AUTHORIZATION);
-
-        if(hasText(bearer) && bearer.startsWith("Bearer ")) {
-            return bearer.substring(7);
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
+        String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
+        if(token != null && jwtTokenProvider.validateToken(token)) {
+            Authentication authentication = jwtTokenProvider.getAuthentication(token);
+            if(authentication != null) {
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
-
-        return null;
+        filterChain.doFilter(req, res);
     }
 }

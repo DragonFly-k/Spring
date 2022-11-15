@@ -1,5 +1,6 @@
 package by.exceptions.Handler;
 
+import by.exceptions.ScooterValidationException;
 import by.exceptions.AccountAuthException;
 import by.exceptions.AccountValidationException;
 import by.exceptions.ScooterException;
@@ -53,6 +54,26 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDate.now());
         body.put("error", ex.getMessage());
         log.info(ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ScooterValidationException.class)
+    public final ResponseEntity<Object> handleProductValidationException(ScooterValidationException ex, WebRequest request) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDate.now());
+
+        List<Map<String, String>> errors = new LinkedList<>();
+
+        for (FieldError el: ex.getBindingResult().getFieldErrors()) {
+            Map<String,String> error = new LinkedHashMap<>();
+            error.put("field", el.getField());
+            error.put("message", el.getDefaultMessage());
+            errors.add(error);
+        }
+
+        body.put("errors", errors);
+        log.info(errors.toString());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,4 +1,4 @@
-package by.config.security.jwt;
+package by.security.jwt;
 
 import by.model.Account;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +19,6 @@ public class JwtAccount implements UserDetails {
         j.login = account.getLogin();
         j.password = account.getPassword();
         j.authorities = Collections.singletonList(new SimpleGrantedAuthority(account.getRole().getName()));
-
         return j;
     }
 

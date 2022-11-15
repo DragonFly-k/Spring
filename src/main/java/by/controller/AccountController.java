@@ -26,7 +26,7 @@ public class AccountController {
         Long accountId = Long.parseLong(mapParam.get("accountId"));
         Account account = accountService.findById(accountId);
         if(account != null) {
-            Boolean isAdmin = "ROLE_ADMIN".equals(account.getRole().getName());
+            Boolean isAdmin = "ADMIN".equals(account.getRole().getName());
             return new ResponseEntity<>(isAdmin, HttpStatus.OK);
         }
         else throw new AccountAuthException("Account not found!");

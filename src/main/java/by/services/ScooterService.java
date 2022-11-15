@@ -20,4 +20,8 @@ public class ScooterService {
         Scooter scooter = scooterRepository.findScooterById(id);
         return scooter;
     }
+    public void create(Scooter scooter) {
+        scooterRepository.save(scooter);
+    }
+
 }
