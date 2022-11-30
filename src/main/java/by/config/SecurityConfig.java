@@ -1,6 +1,5 @@
 package by.config;
 
-
 import by.security.jwt.JwtTokenFilter;
 import by.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,8 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    private static final String SCOOTER_ENDPOINT = "/api/v1/scooter/**";
-    private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
+    private static final String [] SCOOTER_ENDPOINT= {"/api/v1/**","/","/signin","/signup","/js/loadScooters.js","/js/signIn.js","/js/signUp.js", "/admin"};
+    private static final String [] ADMIN_ENDPOINT={"/api/v1/admin/**","/admin","/js/admin.js"};
+
+//    private static final String SCOOTER_ENDPOINT = "/scooter/**";
+//    private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
 
     @Bean
     @Override
@@ -46,9 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(SCOOTER_ENDPOINT).permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers(SCOOTER_ENDPOINT).permitAll()
+                .antMatchers("/css/**","/img/**","/js/**").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }

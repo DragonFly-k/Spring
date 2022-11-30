@@ -29,3 +29,10 @@ CREATE TABLE account_scooter
 
 insert into role (name) values ('BUYER');
 insert into role (name) values ('ADMIN');
+
+insert into scooter (model, price) values ('Xiaomi', 100);
+insert into scooter (model, price) values ('Segway', 200);
+insert into scooter (model, price) values ('Ninebot', 300);
+
+insert into account (email, login, password, role_id) values ('2003katy2003@mail.ru', 'katy', 'katy', 1);
+insert into account (email, login, password, role_id) values ('2003katy2003@mail.ru', 'admin', 'admin', 2);

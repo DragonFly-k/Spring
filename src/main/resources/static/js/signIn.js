@@ -12,8 +12,8 @@ function signIn() {
             "Accept-Type": "application/json"
         },
         body: JSON.stringify({
-            login,
-            password
+            login:login,
+            password:password
         })
     }).then(async (res) => {
         const data = await res.json();
