@@ -8,9 +8,11 @@ function addScooter() {
         headers: { "Authorization": `Bearer ${token}`},
     }).then(async (response) => {
         if(response.ok) {
+            window.location.reload();
             alert('Scooter was added!')
         } else {
             const data = await response.json();
+            alert(data.message);
             console.error("Errors", data.errors);
         }
     })
@@ -26,34 +28,32 @@ function deleteScooter() {
    }).then(response => {
    console.log(response)
        if(response.ok) {
+           window.location.reload();
            alert('Scooter was deleted!')
        } else {
            const data = response.json();
+              alert(data.message);
            console.error("Errors", data.errors);
        }
    })
 }
 
-//function updateScooter() {
-//    const token = window.localStorage.getItem("token");
-//    const model = document.getElementById('model');
-//    const price = document.getElementById('price');
-//
-//    fetch("http://localhost:8080/api/v1/admin/updateScooter", {
-//        method: 'PUT',
-//        headers: {"Authorization": `Bearer ${token}`},
-//        body: JSON.stringify({
-//            model: model.value,
-//            price: parseFloat(price.value),
-//        })
-//    }).then(async (response) => {
-//        if(response.ok) {
-//            model.value = '';
-//            price.value = '';
-//            alert('Scooter was updated!')
-//        } else {
-//            const data = await response.json();
-//            console.error("Errors", data.errors);
-//        }
-//    })
-//}
+function updateScooter() {
+    const token = window.localStorage.getItem("token");
+    const model = document.getElementById('model').value;
+    const price = document.getElementById('price').value;
+
+    fetch("http://localhost:8080/api/v1/admin/updateScooter/"+model+"/"+price, {
+        method: 'PUT',
+        headers: { "Authorization": `Bearer ${token}`},
+    }).then(async (response) => {
+        if(response.ok) {
+            window.location.reload();
+            alert('Scooter was updated!')
+        } else {
+            const data = await response.json();
+            alert(data.message);
+            console.error("Errors", data.errors);
+        }
+    })
+}

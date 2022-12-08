@@ -5,6 +5,7 @@ import by.model.Role;
 import by.repository.AccountRepository;
 import by.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +36,13 @@ public class AccountService {
 
     public Account findById(Long id) { return accountRepository.findAccountById(id); }
 
-    public Account signup(Account account) {
+    public Account signup( Account account) {
         Role role = roleRepository.findRoleByName("BUYER");
         account.setRole(role);
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountRepository.save(account);
         return account;
     }
+
+
 }

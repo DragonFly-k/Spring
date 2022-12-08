@@ -41,9 +41,10 @@ class ApplicationTests {
                 new Scooter("Test 2",2)
         );
 
-        when(scooterRepository.findAll()).thenReturn(scooters);
+        when(scooterRepository.findScooterByModel("Test 1")).thenReturn(scooters.get(0));
+        when(scooterRepository.findScooterByModel("Test 2")).thenReturn(scooters.get(1));
 
-        Assert.assertEquals(scooterRepository.findAll(), scooters);
+        Assert.assertEquals(scooterRepository.findScooterByModel("Test 1"), scooters);
     }
 
     @Test

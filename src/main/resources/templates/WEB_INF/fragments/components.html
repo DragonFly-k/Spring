@@ -28,6 +28,10 @@
                             admin.href = "/admin";
                             admin.innerHTML = "Admin";
                             authLinks.appendChild(admin);
+                            const home = document.createElement("a");
+                            home.href = "/";
+                            home.innerHTML = "Home";
+                            authLinks.appendChild(home);
                         }
 
                         authLinks.appendChild(signOut);
