@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScooterRepository extends JpaRepository<Scooter, Long> {
     Scooter findScooterById(Long id);
+    Scooter findScooterByModel(String model);
 }

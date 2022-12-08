@@ -8,7 +8,7 @@ CREATE TABLE role
 CREATE TABLE scooter
 (
     [id]      [bigint] IDENTITY (1,1) NOT NULL PRIMARY KEY,
-    [model]   [varchar](255)          NULL,
+    [model]   [varchar](255)          NULL unique ,
     [price]   [float]                 NULL,
 )
 CREATE TABLE account
@@ -29,6 +29,7 @@ CREATE TABLE account_scooter
 
 insert into role (name) values ('BUYER');
 insert into role (name) values ('ADMIN');
+
 
 insert into scooter (model, price) values ('Xiaomi', 100);
 insert into scooter (model, price) values ('Segway', 200);

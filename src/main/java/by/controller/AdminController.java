@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,16 +32,30 @@ public class AdminController {
     @Autowired
     ScooterValidator scooterValidator;
 
-    @PostMapping(value = "addScooter")
-    public ResponseEntity<Scooter> addScooter(@Valid @RequestBody ScooterDTO scooterDTO, BindingResult errors)
-    {
-        scooterValidator.validate(scooterDTO, errors);
-        if(errors.hasErrors()) {
-            throw new ScooterValidationException(errors);
+    @PostMapping(value = "/addScooter/{model}/{price}")
+    public ResponseEntity<Scooter> addScooter(@PathVariable String model, @PathVariable int price) {
+        Scooter scooter = new Scooter(model, price);
+        if (scooterService.getByModel(model) != null) {
+            log.info("Scooter with this model already exists");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Scooter scooter = scooterDTO.toScooter();
-        scooterService.create(scooter);
-        log.info("Post request : /api/v1/admin/addProduct");
-        return new ResponseEntity<>(scooter, HttpStatus.CREATED);
+        else {
+            scooterService.create(scooter);
+            log.info("Scooter added");
+            return new ResponseEntity<>(scooter, HttpStatus.OK);
+        }
     }
-}
+
+    @DeleteMapping("/deleteScooter/{model}")
+    public ResponseEntity<Scooter> deleteScooter(@PathVariable String model) {
+        Scooter scooter = scooterService.getByModel(model);
+        if (scooter == null) {
+            log.info("Scooter with model " + model + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            scooterService.delete(scooter);
+            log.info("Delete request : /api/v1/admin/deleteScooter/" + model);
+            return new ResponseEntity<>(scooter, HttpStatus.OK);
+        }
+    }}

@@ -9,8 +9,8 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="mt-4">Add scooter</h2>
-    <form>
+    <h2 class="mt-4">Administration</h2>
+    <form action method="post">
         <div class="form-group">
             <label for="model">Model</label>
             <input type="text" class="form-control" id="model"/>
@@ -19,7 +19,8 @@
             <label for="price">Price</label>
             <input type="number" class="form-control" id="price"/>
         </div>
-        <button type="button" class="btn btn-primary mt-4" onclick="addScooter()">Add scooter</button>
+        <button  type="button" class="btn btn-primary mt-4" th:onclick="addScooter()">Add scooter</button>
+        <button type="button" class="btn btn-primary mt-4" th:onclick="deleteScooter()">Delete scooter</button>
     </form>
 </div>
 <script>
@@ -30,17 +31,8 @@
             {
                 headers: {'Authorization': `Bearer ${token}`}
             });
-
         const isAdmin = await response.json();
-
-        if (!isAdmin || response.status === 403) {
-            alert("403 Unauthorized!");
-            window.location.assign('/');
-        } else {
-            document.querySelector(".admin").classList.remove("d-none");
-        }
     }
-
     checkIsAdmin();
 </script>
 <script th:src="@{/js/admin.js}"></script>

@@ -20,8 +20,15 @@ public class ScooterService {
         Scooter scooter = scooterRepository.findScooterById(id);
         return scooter;
     }
+    public Scooter getByModel(String model) {
+        Scooter scooter = scooterRepository.findScooterByModel(model);
+        return scooter;
+    }
     public void create(Scooter scooter) {
         scooterRepository.save(scooter);
+    }
+    public void delete(Scooter scooter) {
+        scooterRepository.delete(scooter);
     }
 
 }

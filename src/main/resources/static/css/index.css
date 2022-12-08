@@ -1,26 +1,39 @@
 header {
     padding: 6px;
-    background: rgba(0,0,0,0.8);
-    color: white;
+    background: #5C337A;
+    color: #D1C2DD;
     display: flex;
     justify-content: space-between;
 }
 
+#p {
+    color: #AE9CBB;
+}
 p,h1,h2,h3,h4,h5,h6,div.form-group label {
-    color: white;
+    color: #5C337A;
 }
 
-header > div {
+.btn{
+    background: #5C337A;
+    color: #D1C2DD;
+}
+.btn:hover{
+    background: #D1C2DD;
+    color: #5C337A;
+}
+
+header > div{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    Color: #D1C2DD;
     gap: 30px;
 }
 
 footer {
     padding: 6px;
-    background: rgba(0,0,0,0.8);
-    color: white;
+    background: #5C337A;
+    color: #D1C2DD;
     display: flex;
     justify-content: end;
     position: fixed;
@@ -41,13 +54,13 @@ footer {
 button.link {
     border: 0;
     background: none;
-    color: #0d6efd;
+    color: #D5C9DD;
     text-decoration: underline;
     cursor: pointer;
 }
 
 button.link:hover {
-    color: #0a58ca;
+    color: #D1C2DD;
 }
 
 .bgImage {
@@ -79,7 +92,8 @@ button.link:hover {
     flex-direction: row;
     justify-content: space-between;
     gap: 30px;
-    background: rgba(0,0,0,0.8);
+    background: #AE9CBB;
+    color: #5C337A;
     border-radius: 30px;
 }
 
@@ -89,4 +103,7 @@ button.link:hover {
     min-width: 400px;
     align-items: center;
     justify-content: center;
+}
+#authLink {
+    color: #D1C2DD;
 }
