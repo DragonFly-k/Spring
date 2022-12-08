@@ -31,4 +31,8 @@ public class ScooterService {
         scooterRepository.delete(scooter);
     }
 
+    public void update(Scooter scooter) {
+        scooterRepository.save(scooter);
+    }
+
 }

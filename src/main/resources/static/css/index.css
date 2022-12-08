@@ -6,9 +6,15 @@ header {
     justify-content: space-between;
 }
 
+.png {
+    width: 500px;
+    height: 500px;
+}
+
 #p {
     color: #AE9CBB;
 }
+
 p,h1,h2,h3,h4,h5,h6,div.form-group label {
     color: #5C337A;
 }
@@ -17,6 +23,7 @@ p,h1,h2,h3,h4,h5,h6,div.form-group label {
     background: #5C337A;
     color: #D1C2DD;
 }
+
 .btn:hover{
     background: #D1C2DD;
     color: #5C337A;

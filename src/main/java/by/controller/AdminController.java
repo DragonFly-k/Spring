@@ -58,4 +58,21 @@ public class AdminController {
             log.info("Delete request : /api/v1/admin/deleteScooter/" + model);
             return new ResponseEntity<>(scooter, HttpStatus.OK);
         }
-    }}
+    }
+
+    @PutMapping("/updScooter/{model}/{price}")
+    public ResponseEntity<Scooter> updateScooter(@PathVariable String model, @PathVariable int price) {
+        Scooter scooter = scooterService.getByModel(model);
+        if (scooter == null) {
+            log.info("Scooter with model " + model + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            scooter.setPrice(price);
+            scooterService.update(scooter);
+            log.info("Update request : /api/v1/admin/updScooter/" + model + "/" + price);
+            return new ResponseEntity<>(scooter, HttpStatus.OK);
+        }
+    }
+
+}

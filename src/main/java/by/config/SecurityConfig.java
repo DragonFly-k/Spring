@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    private static final String [] SCOOTER_ENDPOINT= {"/api/v1/**","/","/api/v1/admin/**","/signin","/signup","/js/loadScooters.js","/js/signIn.js","/js/signUp.js", "/admin","/js/admin.js","/api/v1/admin/deleteScooter"};
-    private static final String [] ADMIN_ENDPOINT={"/api/v1/admin/**","/admin","/js/admin.js", "/api/v1/admin/addScooter"};
+    private static final String [] SCOOTER_ENDPOINT= {"/api/v1/**","/","/api/v1/admin/**","/signin","/signup","/js/loadScooters.js",
+            "/js/signIn.js","/js/signUp.js", "/admin","/js/admin.js","/api/v1/admin/deleteScooter","/api/v1/admin/updScooter"};
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

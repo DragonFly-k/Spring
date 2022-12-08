@@ -38,12 +38,12 @@ function deleteScooter() {
    })
 }
 
-function updateScooter() {
+function updScooter() {
     const token = window.localStorage.getItem("token");
     const model = document.getElementById('model').value;
     const price = document.getElementById('price').value;
 
-    fetch("http://localhost:8080/api/v1/admin/updateScooter/"+model+"/"+price, {
+    fetch("http://localhost:8080/api/v1/admin/updScooter/"+model+"/"+price, {
         method: 'PUT',
         headers: { "Authorization": `Bearer ${token}`},
     }).then(async (response) => {

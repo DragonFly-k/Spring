@@ -32,11 +32,14 @@ if (token) {
 function requestAuth() {
     scooterContent.innerHTML = "";
     const div = document.createElement("div");
-    div.appendChild((() => {
-        const header = document.createElement('h1')
-        header.innerHTML = "Please sign in or create account firstly";
-        return header;
-    })())
+    div.innerHTML = `
+        <div>
+            <h1>Welcome to the most convenient KickSharing app!</h1>
+            <h3>To continue, log in or register. Have a nice trip!!</h3>
+            <img class="png" src="/img/com.png">
+        </div>
+    `;
+    div.style.textAlign = "center";
     scooterContent.appendChild(div);
 }
 
