@@ -36,7 +36,7 @@ function requestAuth() {
         <div>
             <h1>Welcome to the most convenient KickSharing app!</h1>
             <h3>To continue, log in or register. Have a nice trip!!</h3>
-            <img class="png" src="/img/com.png">
+            <img class="png" src="/img/co.png">
         </div>
     `;
     div.style.textAlign = "center";
@@ -83,23 +83,12 @@ async function scooterInfo(id) {
     }
     const scooter = await getByIdResponse.json();
     const container = document.createElement('div');
-    container.appendChild((() => {
-        const header = document.createElement('h1');
-        header.innerHTML = "Scooter Info";
-        return header;
-    })());
+    container.innerHTML= `
+     <h1>Scooter Info</h1>
+     <p>Scooter Model: ${scooter.model}</p>
+     <p>Scooter Price: ${scooter.price}$</p>
+     <p>Scooter Start Price : 1$</p>`;
 
-    container.appendChild((() => {
-        const p = document.createElement('p');
-        p.innerHTML = `Scooter Model: ${scooter.model}`;
-        return p;
-    })());
-
-    container.appendChild((() => {
-        const p = document.createElement('p');
-        p.innerHTML = `Price per minute: ${scooter.price}`;
-        return p;
-    })());
 
     const availabilityResponse = await fetch(`/api/v1/account/rent?accountId=${accountId}`, {
         headers: {
@@ -151,7 +140,9 @@ async function scooterInfo(id) {
         return button;
     })());
 
+    container.style.textAlign = "center";
     scooterContent.appendChild(container);
+
 }
 
 function scooterComponent(scooter, availabilityData) {
@@ -174,7 +165,6 @@ function scooterComponent(scooter, availabilityData) {
     div.appendChild((() => {
         const price = document.createElement('p');
         price.innerHTML = `Price per minute: ${scooter.price.toFixed(2)}$`;
-
         return price;
     })());
     div.appendChild((() => {

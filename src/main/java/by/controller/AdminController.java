@@ -1,26 +1,14 @@
 package by.controller;
 
-import by.dto.ScooterDTO;
-import by.exceptions.AccountAuthException;
-import by.exceptions.ScooterValidationException;
-import by.model.Account;
-import by.model.AccountScooter;
 import by.model.Scooter;
-import by.services.AccountScooterService;
-import by.services.AccountService;
 import by.services.ScooterService;
 import by.validation.ScooterValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.Map;
 
 @Slf4j
 @Controller

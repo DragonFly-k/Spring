@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -59,10 +58,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ScooterValidationException.class)
     public final ResponseEntity<Object> handleProductValidationException(ScooterValidationException ex, WebRequest request) {
-
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDate.now());
-
         List<Map<String, String>> errors = new LinkedList<>();
 
         for (FieldError el: ex.getBindingResult().getFieldErrors()) {

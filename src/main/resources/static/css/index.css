@@ -7,7 +7,7 @@ header {
 }
 
 .png {
-    width: 500px;
+    width: 350px;
     height: 500px;
 }
 
@@ -111,6 +111,7 @@ button.link:hover {
     align-items: center;
     justify-content: center;
 }
+
 #authLink {
     color: #D1C2DD;
 }

@@ -2,7 +2,6 @@ package by.dto;
 
 import by.model.Scooter;
 import lombok.Getter;
-
 import javax.validation.constraints.NotBlank;
 
 @Getter

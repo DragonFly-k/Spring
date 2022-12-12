@@ -1,10 +1,7 @@
 package by.model;
 
-import by.services.AccountService;
-import by.services.ScooterService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import java.util.Date;
 

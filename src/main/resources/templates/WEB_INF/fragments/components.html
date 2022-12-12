@@ -24,25 +24,37 @@
                         signOut.innerHTML = "Sign Out";
 
                         if(isAdmin) {
-                            const admin = document.createElement("a");
-                            admin.href = "/admin";
+                            const admin  = document.createElement("button");
+                            admin.onclick = () => {
+                              window.location.assign("/admin");
+                            }
+                            admin.classList.add('link');
                             admin.innerHTML = "Admin";
                             authLinks.appendChild(admin);
-                            const home = document.createElement("a");
-                            home.href = "/";
+
+                            const home  = document.createElement("button");
+                            home.onclick = () => {
+                              window.location.assign("/");
+                            }
+                            home.classList.add('link');
                             home.innerHTML = "Home";
                             authLinks.appendChild(home);
                         }
-
                         authLinks.appendChild(signOut);
                     })
                 } else {
-                    const signIn = document.createElement("a");
-                    signIn.href = "/signin";
+                    const signIn  = document.createElement("button");
+                    signIn.onclick = () => {
+                        window.location.assign("/signin");
+                    }
+                    signIn.classList.add('link');
                     signIn.innerHTML = "Sign In";
 
-                    const signUp = document.createElement("a");
-                    signUp.href = "/signup";
+                    const signUp  = document.createElement("button");
+                    signUp.onclick = () => {
+                        window.location.assign("/signup");
+                    }
+                    signUp.classList.add('link');
                     signUp.innerHTML = "Sign Up";
 
                     authLinks.appendChild(signIn);

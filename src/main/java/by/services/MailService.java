@@ -6,7 +6,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
@@ -27,11 +26,11 @@ public class MailService {
         long diff = date.getTime() - accountScooter.getRentTime().getTime();
         long diffMinutes = TimeUnit.MILLISECONDS.toMinutes(diff);
         htmlMsg += "<p>Minutes: "+diffMinutes+"</p>";
-        htmlMsg += "<h3>Total Price: "+diffMinutes*accountScooter.getScooter().getPrice()+"$</h3>";
+        htmlMsg += "<h3>Total Price: "+(diffMinutes*accountScooter.getScooter().getPrice()+1)+"$</h3>";
         htmlMsg += "</br>";
         message.setContent(htmlMsg, "text/html");
         helper.setTo(accountScooter.getAccount().getEmail());
-        helper.setSubject("Rent");
+        helper.setSubject("KickSharing");
         this.emailSender.send(message);
     }
 }

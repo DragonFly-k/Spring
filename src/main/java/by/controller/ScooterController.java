@@ -1,6 +1,6 @@
 package by.controller;
-import by.aop.LogAnnotation;
 
+import by.aop.LogAnnotation;
 import by.dto.RentScooterDTO;
 import by.exceptions.ScooterException;
 import by.model.Account;
